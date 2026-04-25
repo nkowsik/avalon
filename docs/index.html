@@ -16,6 +16,16 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:#f1f5f9;colo
 .pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:3px 11px;font-size:.72rem;font-weight:600;letter-spacing:.4px;color:#e2e8f0;text-decoration:none;cursor:pointer}
 .pill:hover{background:rgba(255,255,255,.2);color:#fff}
 
+/* Earnings */
+.earnings-strip{display:flex;flex-wrap:wrap;gap:10px;padding:14px 36px;background:#fff;border-bottom:1px solid #e2e8f0;align-items:center}
+.strip-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#94a3b8;margin-right:4px}
+.ecard{display:flex;align-items:center;gap:8px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:6px 12px}
+.ecard .eticker{font-weight:700;font-size:.82rem;color:#0f172a}
+.ecard .edate{font-size:.78rem;color:#475569}
+.ecard .etiming{font-size:.68rem;font-weight:600;padding:1px 6px;border-radius:10px;background:#eff6ff;color:#2563eb}
+.ecard.today{border-color:#f59e0b;background:#fffbeb}.ecard.today .eticker{color:#b45309}
+.ecard.soon{border-color:#bbf7d0;background:#f0fdf4}
+
 /* Metrics */
 .metrics{display:flex;gap:14px;padding:20px 36px;flex-wrap:wrap}
 .card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:16px 22px;flex:1;min-width:130px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
@@ -70,6 +80,8 @@ a{color:#2563eb;text-decoration:none}a:hover{text-decoration:underline}
   <p>FinViz · Last updated Apr 25, 2026 08:31 · 12 symbols tracked</p>
   <div class="ticker-row" id="ticker-pills"></div>
 </div>
+
+
 
 
 <div class="tabs">
