@@ -71,12 +71,6 @@ a{color:#2563eb;text-decoration:none}a:hover{text-decoration:underline}
   <div class="ticker-row" id="ticker-pills"></div>
 </div>
 
-<div class="metrics">
-  <div class="card"><div class="lbl">Total Ratings</div><div class="val" id="m-total">—</div></div>
-  <div class="card up"><div class="lbl">⬆ Upgrades</div><div class="val" id="m-up">—</div></div>
-  <div class="card dn"><div class="lbl">⬇ Downgrades</div><div class="val" id="m-dn">—</div></div>
-  <div class="card nu"><div class="lbl">➡ Neutral</div><div class="val" id="m-nu">—</div></div>
-</div>
 
 <div class="tabs">
   <div class="tab active" onclick="switchTab('ratings',this)">📋 Analyst Ratings</div>
@@ -161,10 +155,6 @@ function renderRatings(){
     (!fm || r.firm.toLowerCase().includes(fm))
   );
   document.getElementById('r-count').textContent = rows.length + ' records';
-  document.getElementById('m-total').textContent = rows.length;
-  document.getElementById('m-up').textContent    = rows.filter(r=>r.type==='Upgrade').length;
-  document.getElementById('m-dn').textContent    = rows.filter(r=>r.type==='Downgrade').length;
-  document.getElementById('m-nu').textContent    = rows.filter(r=>r.type==='Neutral').length;
 
   const cls = {Upgrade:'upgrade',Downgrade:'downgrade',Neutral:'neutral'};
   const badge = {Upgrade:'up',Downgrade:'dn',Neutral:'nu'};
