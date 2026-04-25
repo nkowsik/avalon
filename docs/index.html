@@ -99,7 +99,7 @@ a{color:#2563eb;text-decoration:none}a:hover{text-decoration:underline}
 
 
 <div class="earnings-strip"><span class="strip-label">📅 Upcoming Earnings</span><div class="ecard soon"><a class="eticker" href="https://finviz.com/quote.ashx?t=RMBS" target="_blank" rel="noopener">RMBS</a><span class="edate">Apr 27</span><span class="etiming">Mon · After Market</span></div><div class="ecard soon"><a class="eticker" href="https://finviz.com/quote.ashx?t=TTMI" target="_blank" rel="noopener">TTMI</a><span class="edate">Apr 29</span><span class="etiming">Wed · After Market</span></div><div class="ecard soon"><a class="eticker" href="https://finviz.com/quote.ashx?t=SNDK" target="_blank" rel="noopener">SNDK</a><span class="edate">Apr 30</span><span class="etiming">Thu · After Market</span></div><div class="ecard "><a class="eticker" href="https://finviz.com/quote.ashx?t=PBI" target="_blank" rel="noopener">PBI</a><span class="edate">May 05</span><span class="etiming">Tue · After Market</span></div><div class="ecard "><a class="eticker" href="https://finviz.com/quote.ashx?t=AOSL" target="_blank" rel="noopener">AOSL</a><span class="edate">May 06</span><span class="etiming">Wed · After Market</span></div><div class="ecard "><a class="eticker" href="https://finviz.com/quote.ashx?t=ARM" target="_blank" rel="noopener">ARM</a><span class="edate">May 06</span><span class="etiming">Wed · After Market</span></div><div class="ecard "><a class="eticker" href="https://finviz.com/quote.ashx?t=POWI" target="_blank" rel="noopener">POWI</a><span class="edate">May 07</span><span class="etiming">Thu · After Market</span></div></div>
-
+<div class="eps-strip"><span class="eps-label">📈 EPS Estimates</span><div class="eps-table"><div class="eps-card"><span class="eps-ticker">RMBS</span><div class="eps-row"><span class="eps-key">EPS next Q</span><span class="eps-val">0.64</span></div><div class="eps-row"><span class="eps-key">EPS/Sales Surpr.</span><span class="eps-val">0.41%1.14%</span></div></div></div></div>
 <div class="enews-strip"><span class="enews-label">📰 Latest News — RMBS</span><div class="enews-item"><span class="en-time">Apr 24 05:01PM</span><a class="en-link" href="https://finance.yahoo.com/markets/stocks/articles/institutions-rambus-reaching-records-210143052.html" target="_blank" rel="noopener">Institutions Have Rambus Reaching Records</a><span class="en-source">(FX Empire)</span></div><div class="enews-item"><span class="en-time">Apr 22 05:00PM</span><a class="en-link" href="https://www.businesswire.com/news/home/20260422571726/en/Rambus" target="_blank" rel="noopener">Rambus Enables Power-Efficient AI Platforms with SOCAMM2 Server Module Chipset</a><span class="en-source">(Business Wire)</span></div></div>
 
 <div class="tabs">
@@ -147,9 +147,14 @@ const NEWS    = [{"date": "Apr 24, 2026", "time": "02:08PM", "ticker": "MXL", "h
 const TICKERS = ["AIP", "AMSC", "AOSL", "ARM", "GEV", "MXL", "PBI", "POWI", "RMBS", "SNDK", "STM", "TTMI", "WLAC"];
 const STATS   = {"AIP": "9.91%", "AMD": "13.91%", "AMSC": "7.22%", "AOSL": "11.46%", "ARM": "14.76%", "GEV": "-0.03%", "INTC": "23.60%", "MXL": "76.12%", "PBI": "1.37%", "POWI": "1.25%", "RMBS": "14.37%", "SNDK": "6.16%", "STM": "1.53%", "TTMI": "12.05%", "WLAC": "12.60%"};
 
-// Populate ticker pills with gain/loss coloring
+// Populate ticker pills sorted by change % (gainers first)
 const pillRow = document.getElementById('ticker-pills');
-TICKERS.forEach(t => {
+const sortedTickers = [...TICKERS].sort((a,b) => {
+  const va = parseFloat((STATS[a]||'').replace('%','').replace('+','')) || 0;
+  const vb = parseFloat((STATS[b]||'').replace('%','').replace('+','')) || 0;
+  return vb - va;
+});
+sortedTickers.forEach(t => {
   const pct = STATS[t] || '';
   const val = parseFloat(pct.replace('%','').replace('+',''));
   const cls = isNaN(val) ? '' : (val > 0 ? 'up' : (val < 0 ? 'dn' : ''));
